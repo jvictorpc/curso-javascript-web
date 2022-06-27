@@ -7,11 +7,11 @@
  * 
  */
 
-function tocaSomPom (){
+function tocaSom (som){
      document.querySelector('#som_tecla_pom').play();
+    
 }
-let teclaPom = document.querySelector('.tecla_pom');
 
-teclaPom.addEventListener('click', tocaSomPom);
-
-
+const listaDeTeclas = document.querySelectorAll('.tecla');
+const listaDeSons = document.querySelectorAll('audio');
+console.log(listaDeSons)
