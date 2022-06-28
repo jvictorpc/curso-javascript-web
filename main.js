@@ -5,6 +5,14 @@
  * função QuerySelector
  *  - retorna o primeiro elemento do documento que corresponde ao que foi especificado 
  * 
+ * Propriedade classList 
+ *  - retorna uma lista dos nomes de classe de algum elemento do documento
+ *  - conveniente para acessar a lista de classes de algum elemento
+ * 
+ * Função Anônima
+ *  - São funções que não dependem de nomes, são apenas declaradas e armazenadas em uma variável
+ *  - geralmente não está acessível após a sua criação 
+ *  - é possível passar funções anônimas como parâmetros de outras funções   
  */
 
 function tocaSom (idElementoAudio){
@@ -13,13 +21,29 @@ function tocaSom (idElementoAudio){
 }
 
 const listaDeTeclas = document.querySelectorAll('.tecla');
-let contador = 0;
+
+for(contador = 0; contador < listaDeTeclas.length; contador++){
+     const teclas = listaDeTeclas[contador];
+     const instrumentos = teclas.classList[1];
+     console.log(teclas.attributes)
+
+     teclas.addEventListener('click', () =>{
+          tocaSom(`#som_${instrumentos}`);
+     })
+}
 
 
-while (contador < listaDeTeclas.length){
-     listaDeTeclas[contador].addEventListener('click', function (){
-          tocaSom('#som_tecla_pom');
+
+
+/*while (contador < listaDeTeclas.length){
+     const teclas = listaDeTeclas[contador];
+     const instrumentos = teclas.classList[1];
+     console.log(instrumentos);
+     
+     teclas.addEventListener('click', function () {
+          tocaSom(`#som_${instrumentos}`);
      });
 
      contador++;
 }
+*/
