@@ -13,11 +13,23 @@
  *  - São funções que não dependem de nomes, são apenas declaradas e armazenadas em uma variável
  *  - geralmente não está acessível após a sua criação 
  *  - é possível passar funções anônimas como parâmetros de outras funções   
+ * 
+ * Na própria linguagem há um recurso fornecido para trabalharmos com eventos, esse recurso tá diretamente
+ * atrelada a um evento,como no caso das funçòes anonimas, por exemplo
  */
 
-function tocaSom (idElementoAudio){
-     document.querySelector(idElementoAudio).play();
-    
+function tocaSom (seletorAudio){
+    const elemento =  document.querySelector(seletorAudio);
+
+    if (elemento !== null){
+          if(elemento.localName === 'audio') {        
+               elemento.play();
+          }else{
+               console.log("Não é uma tag de audio");
+          }
+    }else {
+     console.log("Elemento não encontrado");
+    }
 }
 
 const listaDeTeclas = document.querySelectorAll('.tecla');
@@ -25,10 +37,19 @@ const listaDeTeclas = document.querySelectorAll('.tecla');
 for(contador = 0; contador < listaDeTeclas.length; contador++){
      const teclas = listaDeTeclas[contador];
      const instrumentos = teclas.classList[1];
-     console.log(teclas.attributes)
+     
 
      teclas.addEventListener('click', () =>{
           tocaSom(`#som_${instrumentos}`);
+     })
+
+     teclas.addEventListener('keydown', (evento) =>{
+          if(evento.code === "Space" || evento.code === "Enter" ){
+               teclas.classList.add('ativa');
+          }
+     })
+     teclas.addEventListener('keyup', () =>{
+          teclas.classList.remove('ativa');
      })
 }
 
